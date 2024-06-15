@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter, Routes,Route } from "react-router-dom";
+import Artistpage from "./page/Artistpage.js";
+import Profile from "./page/Profile.js";
+import SignPage from "./page/SignPage.js";
+import {path_browser} from "./utils/constant.js"
+import Page from "./page/page.js";
+import StackMusic from "./component/StackMusic.js";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+          {/* Page */}
+          <Route path={path_browser.HOME} element={<Page/>}>
+                {/*your path is seem like parent element */}
+                <Route index element={<StackMusic/>}></Route>
+                {/* The below specifices path will be render and if your path not in the list
+                  , it goes to NOTFOUND Page for you
+                */}
+                <Route path={path_browser.ARTIST} element={<Artistpage/>}></Route>
+                <Route path={path_browser.PROFILE} element={<Profile/>}></Route>
+          </Route>
+          <Route path={path_browser.SIGN} element={<SignPage/>}> </Route>
+    </Routes>
+  </BrowserRouter>
   );
 }
 

@@ -1,0 +1,130 @@
+.it_music{
+    background: #635985;
+}
+.current_title h3:hover 
+{
+    opacity: 0.8;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.current_title p:hover 
+{
+    opacity: 0.8;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.author{
+    font-size:30px;
+    font-weight: bold;
+}
+.it_logo {
+    cursor: pointer;
+    transition: all 1s;
+}
+.it_logo p {
+    text-transform: capitalize;
+}
+.it_logo:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+.it_logo > img{
+    height: 100px;
+    width: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.it_btn_follow{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000 !important; 
+    transition: all .5; 
+    border:none;
+}
+button.it_btn_follow:hover{
+    background-color: #263a92 !important;  
+}
+.it_player{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    transition: all 1s;
+}
+.it_player:hover{
+   color: rgb(80, 70, 70);
+   transform: scale(0.95);
+}
+/* clip text */
+.it_content{
+    width:100%;
+    overflow:hidden;
+    height:60px;
+    line-height:20px;
+    text-align: justify;
+    user-select: none;
+}
+button.it_btnLike{
+    transform: translateY(15px);
+    margin: 0 auto;
+    width: 140px;
+    transition: all .5; 
+    display: block;
+}
+button.it_btnLike:hover{
+    background-color: #9a304a !important;  
+    border: none;
+    opacity: 0.8;
+}
+.it_banner{
+    width:60%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.it_banner > img{
+    border-radius:  10%;
+    transition: all 2s;
+    cursor: pointer;
+}
+.it_banner > img:hover
+{
+    filter: drop-shadow(0 0 200px #4022a3)
+}
+/* Tablet IpadMini */
+@media screen and (min-width: 768px) and (max-width:1280px){ 
+    button.it_btnLike{
+        width: 85px;
+        transform: unset;
+    }
+}
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .it_music{
+        padding-bottom: 20px;
+    }
+    .author{
+        font-size:15px;
+    }
+    button.it_btn_follow{
+        display: none !important;
+    }
+    .it_banner{
+        width: 100%;
+    }
+    .it_content {
+        font-size: 10px;
+        text-align: justify;
+    }
+    button.it_btnLike{
+        width: 120px;
+        transform: unset;
+    }
+}

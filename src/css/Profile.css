@@ -1,0 +1,69 @@
+.profile_it
+{
+    height: 80vh;
+}
+.profile_it::-webkit-scrollbar
+{
+    width: 5px;
+}
+.profile_it::-webkit-scrollbar-track
+{
+    background: #000;
+}
+.profile_it::-webkit-scrollbar-thumb
+{
+    background: linear-gradient( to top,#45F882,#FFBE18 );
+    border-radius: 5%;
+}
+
+.info_acc  img {
+    width: 50%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transform: translateX(50%);
+    opacity: 0.8;
+}
+.info_acc  p {
+    font-size: 25px;
+    font-weight: 800;
+    color: #dfdcd5;
+}
+.list_fav {
+    height: 500px;
+}
+.list_fav .stack_music 
+{
+    transform: scale(0.8) translateY(-110px);
+}
+/* Tablet IpadMini */
+@media screen and (min-width: 768px) and (max-width:1280px){ 
+    .profile_page
+    {
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .profile_it
+    {
+        margin-top: 200px;
+    }
+}
+
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .profile_page
+    {
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .info_acc  p {
+        font-size: 20px;
+        font-weight: 800;
+    }
+    .info_acc  img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transform: translateX(10%);
+    }
+}

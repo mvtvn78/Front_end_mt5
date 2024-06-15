@@ -1,0 +1,45 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+}
+p{
+    text-align: center;
+}
+.text_normal {
+    color: #d9d1ff;
+}
+.text_out {
+    color: #f9f9ff;
+}
+.rounded_shape{
+    border-radius: 2%;
+}
+.color_page
+{
+    background: #393053;
+}   
+
+/* Reset button */
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active
+{
+    background: #472f91 !important;
+}
+.btn
+{
+    background: #635985 !important;
+    color: white !important;
+    font-weight:  800 !important;
+    border-color: #393053 !important;
+}
+.btn:hover
+{
+    background: #3d2881 !important;
+    color: rgb(116, 104, 120) !important;
+}

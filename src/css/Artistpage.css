@@ -1,0 +1,108 @@
+.artist_page
+{
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.artist_page img {
+    opacity: 0.8;
+}
+.artist_page::-webkit-scrollbar
+{
+    width: 5px;
+}
+.artist_page::-webkit-scrollbar-track
+{
+    background: #000;
+}
+.artist_page::-webkit-scrollbar-thumb
+{
+    background: linear-gradient( to top,#45F882,#FFBE18 );
+    border-radius: 5%;
+}
+.artist_img{
+    position: relative;
+    height: 350px;
+}
+.artist_img > img{
+    display: block;
+    border-radius: 10%;
+    object-fit: cover;
+}
+.artist_content > h3{
+    font-size: 60px;
+    text-align: center;
+}
+.artist_content > p{
+    font-size: 20px;
+    text-align: justify;
+}
+
+.artist
+{
+    background: #635985;
+}
+.author_spec
+{
+    background: #635985;
+    color: #fff5f5;
+    font-weight: 500;
+}
+.album
+{
+    background: #9d8fd0;
+}
+button.it_btn_follow_arts:hover{
+    background-color: #263a92 !important;  
+}
+/* Tablet IpadMini */
+@media screen and (min-width: 768px) and (max-width:1280px){ 
+    .artist_page
+    {
+        height: 89vh;
+    }
+    .artist_content > h3{
+        font-size: 20px;
+        text-align: center;
+    }
+    .artist_content > p{
+        font-size: 15px;
+        text-align: justify;
+    }
+    .author_spec p
+    {
+        text-align: center;
+        font-size: 12px;
+    }
+   
+}
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .artist_page
+    {
+        height: 70vh;
+    }
+    .artist_content > h3{
+        font-size: 20px;
+        text-align: center;
+    }
+    .artist_content > p{
+        font-size: 15px;
+        text-align: justify;
+    }
+    .author_spec p
+    {
+        text-align: justify;
+    }
+    .it_btn_follow_arts
+    {
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    div.artist_page
+    {
+        margin-top: 0 !important;
+    }
+}

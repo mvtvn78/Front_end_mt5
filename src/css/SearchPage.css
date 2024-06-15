@@ -1,0 +1,132 @@
+.search_page
+{
+    height: 80vh;
+    overflow-y: scroll;
+}
+.search_page
+{
+    height: 80vh;
+    overflow-y: scroll;
+}
+.search_page::-webkit-scrollbar
+{
+    width: 5px;
+}
+.search_page::-webkit-scrollbar-track
+{
+    background: #000;
+}
+.search_page::-webkit-scrollbar-thumb
+{
+    background: linear-gradient( to top,#45F882,#FFBE18 );
+    border-radius: 5%;
+}
+
+.category 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#paginator
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50px);
+}
+.pagination > li{
+    width: 60px;
+    text-align: center;
+}
+.page-link{
+    background: #635985 !important;
+    border: none !important;
+    color: #ffff !important;
+}
+/* Reset active */
+.active>.page-link, .page-link.active
+{
+    background: #000 !important;
+    border: none;
+}
+.btn_cate
+{
+    width: 100px;
+}
+/* Tablet IpadMini */
+@media screen and (min-width: 768px) and (max-width:1280px){ 
+    .search_page
+    {
+        height: 100vh;
+        overflow-y: scroll;
+    }
+    .cate_container{
+        transform: translateY(150px);
+        z-index: 100;
+    }
+    .category
+    {
+        overflow-x: scroll;
+        display: block;
+        margin: 0 auto;
+        width: 50%;
+    }
+    .category::-webkit-scrollbar
+    {
+        height: 2px;
+    }
+    .category::-webkit-scrollbar-track
+    {
+        background: #000;
+    }
+    .category::-webkit-scrollbar-thumb
+    {
+        background: linear-gradient( to top,#45F882,#FFBE18 );
+        border-radius: 2%;
+    }
+    .it_search_container {
+        margin-top: 100px !important;
+    }
+}
+
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .search_page
+    {
+        height: 98vh;
+        overflow-y: scroll;
+    }
+    .category
+    {
+        overflow-x: scroll;
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .category::-webkit-scrollbar
+    {
+        height: 2px;
+    }
+    .category::-webkit-scrollbar-track
+    {
+        background: #000;
+    }
+    .category::-webkit-scrollbar-thumb
+    {
+        background: linear-gradient( to top,#45F882,#FFBE18 );
+        border-radius: 2%;
+    }
+    div.p-4 ,div.p-5
+    {
+        padding: 0 !important;
+    }
+    .it_search  .itq
+    {
+        margin: 20px 0;
+    }
+    #paginator
+    {
+        transform: translateY(-25px);
+    }
+}

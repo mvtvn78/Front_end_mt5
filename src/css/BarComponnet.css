@@ -1,0 +1,21 @@
+.btn_showmenu{
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    background:none;
+    outline: none;
+    border: 0;
+    z-index: 100;
+}
+.btn_showmenu > .icon_bars{
+    font-size: 40px;
+}
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+  
+    .btn_showmenu{
+        position: unset;
+        margin-top: 60px;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,231 @@
+.m_controller{
+    background: #0b0121;
+    position: fixed;
+    bottom: -1%;
+    top:80vh;
+    z-index: 100;
+}
+/* Reset CSS for input ranger */
+input[type="range"] {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /*styling the track*/
+    width: 75%;
+    height: 3px;
+    background:#2c1c60;
+    border-radius: 16px;
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 9px;
+    width: 9px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* First hover and active thumb */
+input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 10px 10px rgba(209, 209, 209,0.8);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    box-shadow: 0 0 15px 15px rgb(209, 209, 209);
+}
+.speaker_icon
+{
+    color: white;
+    transform: translateY(5px);
+    margin-left: 8%;
+    cursor: pointer;
+    transition: all 1s;
+}
+.speaker_icon:hover
+{
+    color: rgb(142, 145, 231);
+}
+.active_loop
+{
+    font-size: 35px;
+    color: #5730ac  !important;
+} 
+/* Controller Bar */
+.controller_bar{
+    margin-top: 20px;
+}
+
+
+/* Style Time */
+.time{
+    font-size: 10px;
+    color: #fff;
+    font-weight: 350;
+    padding: 10px;
+    user-select: none;
+}
+.current_song  #current_banner{
+    width: 100px;
+    height:100px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+/* center Y */
+.current_detail{
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+}
+.current_detail h3{
+    font-size: 20px;
+    user-select: none;
+}
+.current_detail .author{
+    font-size: 10px;
+    text-align: left;
+    user-select: none;
+}
+
+.icon_controllers{
+    font-size: 35px;
+    padding: 25px;
+    color: #8c8197;
+    cursor: pointer;
+    transition: all 1s;
+}
+.icon_controllers:hover{
+    color: #fffeff;
+    cursor: pointer;
+    transform: scale(1.11);
+}
+.controllers{
+   position: relative;
+}
+.current_title{
+    transform: translateX(-40%);
+}
+
+/* Style the page when it is in fullscreen mode */
+
+.icon_controllers.fullscren {
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+:fullscreen .trigger_item
+{
+    transition: all 1s;
+    opacity: 0;
+}
+:fullscreen .trigger_item:hover
+{
+    opacity: 1;
+}
+:fullscreen .controller_bar
+{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+:fullscreen .controller_bar span
+{
+    transform: translateY(-18px);
+}
+:fullscreen .current_detail
+{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.fullscreen_img {
+    margin-top: 20%;
+    filter: drop-shadow(0 0 200px #4417a4);
+}
+.fullscreen_img:hover  p {
+    color: #6446a4;
+    filter: drop-shadow(0 0 300px #3c00bd);
+}
+.fullscreen_img  p {
+    padding: 40px;
+    color: #5730ac;
+    font-weight: 800;
+    font-size: 55px;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+ }
+/* Tablet IpadMini */
+@media screen and (min-width: 768px) and (max-width:1280px){ 
+    .m_controller{
+        top:85vh;
+    }
+    .current_song{
+        transform:  scale(1.2) translateX(15%); 
+        
+    }
+    .current_detail{
+        left:50%;
+    }
+    .icon_controllers{
+        font-size: 30px;
+        padding: 20px;
+    }
+    .controllers{
+        transform: translateX(-50%);
+    }
+    input[type="range"] , .time , #handler ,.max_screen ,.speaker_icon{
+        display: none;
+    }
+    .current_detail h3{
+        font-size: 13px;
+        user-select: none;
+    }
+}
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .current_detail h3{
+        font-size: 13px;
+        user-select: none;
+    }
+    .m_controller{
+        top:85vh;
+    }
+    .current_song{
+        transform: translateY(-38px);
+    }
+    .current_song  #current_banner{
+        width: 80px;
+        height:50px;
+    }
+    .current_detail {
+        left: 30%;
+    }
+    .speaker_icon{
+        transform: translateY(10px);
+        font-size: 20px;
+    }
+    .current_detail h3{
+        font-size: 15px;
+    }
+    .current_detail .author{
+        font-size: 8px;
+        text-align: left;
+    }
+   
+    input[type="range"] , .time , #handler ,#icon_max{
+        display: none;
+    }
+    .icon_controllers{
+        transform: translate(-50%,-40%);
+        font-size: 25px;
+        padding: 15px;
+    }
+    
+}

@@ -1,0 +1,50 @@
+.place_img{
+    width: 60%;
+}
+.ablums_it
+{
+   display: flex;
+   color: white;
+   gap:10px;
+   cursor: pointer;
+}
+
+.ablums_it:hover .ablum_it_btn
+{
+    visibility: visible;
+}
+.ablums_it_head  {
+    position: relative;
+    flex: 2;
+}
+.ablums_it_head img  {
+    border-radius: 10%;
+}
+.ablums_it_head .ablum_it_btn  {
+    position: absolute;
+    font-size: 35px;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    visibility: hidden;
+    transition: all .1s;
+    cursor: pointer;
+}
+.ablums_it_content{
+    flex:8;
+}
+.ablums_it_content h3{
+    font-size: 25px;
+    color: rgb(192, 149, 214);
+}
+.ablums_it_content p{
+    font-size: 10px;
+    text-align: left;
+}
+/* Moblie  SamSung S8*/ 
+@media screen and (min-width: 360px) and (max-width:767px){ 
+    .ablums_it_head .ablum_it_btn  {
+        font-size: 15px;
+       
+    }
+}

@@ -1,0 +1,52 @@
+#root {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign_container
+{
+    border-radius: 2%;
+    background: #635985 ;
+}
+.logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo_container img {
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn_sign  button{
+    flex-basis: 19px;
+}
+.btn_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text_signin{
+    font-weight: 700 !important;
+    text-align: justify;
+    color: aliceblue;
+}
+input[type="radio"]
+{
+    cursor: pointer;
+}
+.forgot_pass span
+{ 
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    padding: 20px;
+    text-decoration: underline 1px;
+    cursor: pointer;
+    user-select: none;
+}
+.cursor_pointer{
+    cursor: pointer;
+}
