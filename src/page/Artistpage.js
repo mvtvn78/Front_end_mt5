@@ -8,24 +8,57 @@ import { AudioCurrentContext } from "../context/AudioCurrentContext";
 import { URL_public } from "../utils/constant";
 import NotFound from "../component/NotFound";
 import { addFollowArtist, removeFollowArtist } from "../services/UserServices";
-import { getArtistByCode } from "../services/ArtistServices";
+import { getArtistByCode, getNumberFollowerCode, getNumberSongsCode } from "../services/ArtistServices";
 export default function Artistpage() {
   const {userCode,params,setParamCurrent,artistCodeList,infoArtists} = useContext(AudioCurrentContext);
   const [modeFollow,setModeFollow] = useState(true)
   const [infoArtistID,setInfoArtistId] = useState()
-  //
+  const [numberFollower,setNumberFolower] = useState(0)
+  const [numberSongs,setNumberSongs] = useState(0)
+  //getTotalFollower
+  const getTotalFollower = async(id) => {
+    const value = await getNumberFollowerCode(id)
+    if(+value.ErrorCode ===0 )
+     {
+      setNumberFolower(value.data[0].Total)
+      return;
+     }
+    setNumberFolower(0)
+  }
+  //getTotalSongs
+  const getTotalSongs = async(id) => {
+    const value = await  getNumberSongsCode(id)
+    if(+value.ErrorCode ===0 )
+      {
+        setNumberSongs(value.data[0].Total)
+        return;
+      }
+    setNumberSongs(0)
+  }
   // Load Method
   const FetchMyArtist = async() =>{
     //console.log(infoArtists);
     const id = params.get('id')
     if(id)
     {
+      await getTotalFollower(id)
+      await getTotalSongs(id)
       const value = await getArtistByCode(id)
       setInfoArtistId(value.data)
       setModeFollow(artistCodeList.includes(value.data[0]?.MANS))
       return;
     }
     // 
+    const arrFollower =[]
+    const arrSongs = []
+    infoArtists.forEach ( async (element,idx) => {
+      const valueSong= await  getNumberSongsCode(element?.MANS)
+      const valueFollow =  await getNumberFollowerCode(element?.MANS)
+      arrFollower.push(valueFollow.data[0].Total)
+      arrSongs.push(valueSong.data[0].Total)
+      setNumberFolower([...arrFollower])
+      setNumberSongs([...arrSongs])
+    });
     setModeFollow(true)
     setInfoArtistId([])
   }
@@ -77,16 +110,14 @@ export default function Artistpage() {
                 </Col>
                 <Col xs={12} className="author_spec mt-3 p-2">
                   <Row>
-                    <Col  xs={12} md={3} className="mt-2">
-                      <p>Follower : 100 </p>
+                    <Col  xs={12} md={4} className="mt-2">
+                      <p>Follower : {numberFollower} </p>
                     </Col>
-                    <Col xs={12} md={3} className="mt-2">
-                      <p>Tổng số bài hát : 100</p>
+                    <Col xs={12} md={4} className="mt-2">
+                      <p>Tổng số bài hát : {numberSongs}</p>
                     </Col>
-                    <Col xs={12} md={3} className="mt-2">
-                      <p>Lượt xem theo tháng : 100</p>
-                    </Col>
-                    <Col xs={12} md={3} className="mt-1">
+                   
+                    <Col xs={12} md={4} className="mt-1">
                     <Button variant="outline-primary" className=" text_normal  it_btn_follow"  data_artist={info?.MANS} onClick={handleClickFollow} active={modeFollow} >{modeFollow ? 'Đã Theo dõi':'Theo dõi'} </Button>
                     </Col>
                   </Row>
@@ -122,16 +153,14 @@ export default function Artistpage() {
                 </Col>
                 <Col xs={12} className="author_spec mt-3 p-2">
                   <Row>
-                    <Col  xs={12} md={3} className="mt-2">
-                      <p>Follower : 100 </p>
+                    <Col  xs={12} md={4} className="mt-2">
+                      <p>Follower : {numberFollower[idx]} </p>
                     </Col>
-                    <Col xs={12} md={3} className="mt-2">
-                      <p>Tổng số bài hát : 100</p>
+                    <Col xs={12} md={4} className="mt-2">
+                      <p>Tổng số bài hát : {numberSongs[idx]}</p>
                     </Col>
-                    <Col xs={12} md={3} className="mt-2">
-                      <p>Lượt xem theo tháng : 100</p>
-                    </Col>
-                    <Col xs={12} md={3} className="mt-1">
+                    
+                    <Col xs={12} md={4} className="mt-1">
                     <Button variant="outline-primary" className=" text_normal  it_btn_follow"  data_artist={info?.MANS} onClick={handleClickFollow} active={modeFollow} >{modeFollow ? 'Đã Theo dõi':'Theo dõi'} </Button>
                     </Col>
                   </Row>
