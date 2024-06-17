@@ -13,6 +13,7 @@ export default function AlbumComponent({ code, TenNS,parent }) {
   //
   const FetchAPIAlbum = async () => {
     const value = await getArtistAlbumByCode(code);
+    console.log(value);
     if (+value.ErrorCode === 0) {
       const arr = [...value.data];
       for (let i = 0; i < arr.length; ++i) {
@@ -29,8 +30,8 @@ export default function AlbumComponent({ code, TenNS,parent }) {
   }, [parent]);
   return (
     <>
-      {listSong?.length === 0 ? <NotFound /> : ""}
-      {listSong.map((el, idx) => {
+      {listSong?.length === 0 ? `Album nào đó của ${TenNS} đã ở chế độ riêng tư`: ""}
+      {listSong?.length !== 0 && listSong.map((el, idx) => {
         return (
           <Row key={idx}>
             <Col className="album_head" xs={4} >
