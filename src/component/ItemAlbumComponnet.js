@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import "../css/ItemAlbumComponnent.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -10,6 +10,20 @@ import { CheckListendSong, UpdateTimeListendSong, addListendSong } from "../serv
 export default function ItemAlbumComponnet({idx,info,tenNS}) {
   //using context
   const {currentElement,setListendList,userCode,setCurrentElement,audioCurrent} = useContext(AudioCurrentContext);
+  let audio_temp = useRef(new Audio(URL_public + info?.filenhac))
+  const [duration,setDuration]=useState('0')
+  //Format to display
+  function sToTime(t) {
+    return padZero(parseInt((t / (60)) % 60)) + ":" + 
+           padZero(parseInt((t) % 60));
+  }
+  function padZero(v) {
+    return (v < 10) ? "0" + v : v;
+  }
+  //get duration
+  const getDuration = () => {
+    setDuration(sToTime(audio_temp.current.duration))
+  }
   //IncreaseView Handler
   const putIncreaseView = async (maBH) =>
     {
@@ -60,6 +74,13 @@ export default function ItemAlbumComponnet({idx,info,tenNS}) {
     audioCurrent.current.play()
     setCurrentElement({...info,idx: -1,isPlay:true})
   }
+  //
+  useEffect( () =>{
+    audio_temp.current.addEventListener("loadedmetadata", getDuration)
+    return ()=>{
+      audio_temp.current.removeEventListener("loadedmetadata",getDuration)
+    }
+  },[])
   return (
     <tr >
       <td>{idx+1}</td>
@@ -78,7 +99,7 @@ export default function ItemAlbumComponnet({idx,info,tenNS}) {
       <td>
         {new Date(info?.ThoiGian).toLocaleString()}
       </td>
-      <td>2:33</td>
+      <td>{duration}</td>
     </tr>
   );
 }
