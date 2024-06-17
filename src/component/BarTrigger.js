@@ -16,7 +16,7 @@ export default function BarTrigger({handleShowMode,show}) {
   const [keySearch,setKeySearch]= useState('')
   // Navigate
   const navigate = useNavigate();
-  const {listendList,setParamCurrent} = useContext(AudioCurrentContext);
+  const {userCode,listendList,setParamCurrent} = useContext(AudioCurrentContext);
   //Handle Press Enter
   const handlePressEnter = (e) =>{
     if(e.key =="Enter")
@@ -45,9 +45,9 @@ export default function BarTrigger({handleShowMode,show}) {
                   <FontAwesomeIcon icon={faMagnifyingGlass}  id='icon_finder'/>
                 </div>
               <ButtonGroup vertical className='list_func'>
-                <Button className='m-2' active  onClick={ (e) => {e.preventDefault(); navigate(path_browser.HOME);  setParamCurrent('');handleShowMode(false); } }>Trang chủ</Button>
-                <Button className='m-2'  onClick={ (e) => {e.preventDefault(); navigate(path_browser.ARTIST); handleShowMode(false); setParamCurrent('artist_page');}  }>My Artist</Button>
-                <Button className='m-2'  onClick={ (e) => {e.preventDefault(); navigate(path_browser.PROFILE); handleShowMode(false) ; } }>My Profile</Button>
+                <Button className='m-2' active  onClick={ (e) => {e.preventDefault(); navigate(path_browser.HOME);  handleShowMode(false); setParamCurrent('home_page'+  userCode+ new Date().toLocaleTimeString()); } }>Trang chủ</Button>
+                <Button className='m-2'  onClick={ (e) => {e.preventDefault(); navigate(path_browser.ARTIST); handleShowMode(false); setParamCurrent('artist_page' + userCode + new Date().toLocaleTimeString());}  }>My Artist</Button>
+                <Button className='m-2'  onClick={ (e) => {e.preventDefault(); navigate(path_browser.PROFILE); handleShowMode(false) ; setParamCurrent('profile'+ userCode + new Date().toLocaleTimeString()) } }>My Profile</Button>
               </ButtonGroup>
               <div className="queue_container p-1">
                 <Stack gap={3} className='m-2 '>

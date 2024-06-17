@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState  } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState  } from "react";
 import Container from "react-bootstrap/Container";
 import StackMusic from "../component/StackMusic";
 import Musiccontroller from "../component/Musiccontroller";
@@ -32,6 +32,7 @@ export default function Page() {
   const [favCodeList,setFavCodeList]= useState([])
   const [artistCodeList,setArtistCodeList]= useState([])
   const [infoArtists,setInfoArtist] = useState([])
+  let intial = useRef(false)
   // handle cookie
   const handleCookie =  async(token) => {
     const value = await axios.get(`/users?token=${token}`)
@@ -44,7 +45,8 @@ export default function Page() {
       setUserCode(code)
       return;
       }
-    navigate("/sign")
+      navigate("/sign")
+      window.location.reload()
   }
    //get FavListSong 
    const getFavListSong = async (mand) =>{
@@ -81,8 +83,13 @@ export default function Page() {
           arr.push(element)
         });
         // put curentElement is 0
-        setCurrentElement({...arr[0],idx:0,isPlay:false})
-        audioCurrent.current.setAttribute("src",URL_public + arr[0]?.filenhac)
+        if(!intial.current)
+          {
+            setCurrentElement({...arr[0],idx:0,isPlay:false})
+            audioCurrent.current.setAttribute("src",URL_public + arr[0]?.filenhac)
+          }
+        // flag
+        intial.current = true
         // put element into state
         setSongList([...arr])
         return;
@@ -125,6 +132,7 @@ export default function Page() {
     await handleCookie(access_cookies)
     await getSongList(params.get("search"))  
   }
+  //
   useEffect( ()=>{
     FetchMyAPI()
   },[paramCurrent])

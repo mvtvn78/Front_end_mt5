@@ -8,7 +8,7 @@ import { AudioCurrentContext } from "../context/AudioCurrentContext";
 import { getSongByAlbs } from "../services/SongServices";
 import NotFound from "./NotFound";
 import { URL_public } from "../utils/constant";
-export default function AlbumComponent({ code, TenNS }) {
+export default function AlbumComponent({ code, TenNS,parent }) {
   const [listSong, setListSong] = useState([]);
   //
   const FetchAPIAlbum = async () => {
@@ -26,8 +26,7 @@ export default function AlbumComponent({ code, TenNS }) {
   //
   useEffect(() => {
     FetchAPIAlbum();
-    console.log(listSong);
-  }, []);
+  }, [parent]);
   return (
     <>
       {listSong?.length === 0 ? <NotFound /> : ""}

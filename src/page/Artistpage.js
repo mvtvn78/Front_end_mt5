@@ -10,7 +10,7 @@ import NotFound from "../component/NotFound";
 import { addFollowArtist, removeFollowArtist } from "../services/UserServices";
 import { getArtistByCode } from "../services/ArtistServices";
 export default function Artistpage() {
-  const {userCode,paramCurrent,params,setParamCurrent,artistCodeList,infoArtists} = useContext(AudioCurrentContext);
+  const {userCode,params,setParamCurrent,artistCodeList,infoArtists} = useContext(AudioCurrentContext);
   const [modeFollow,setModeFollow] = useState(true)
   const [infoArtistID,setInfoArtistId] = useState()
   //
@@ -25,6 +25,8 @@ export default function Artistpage() {
       setModeFollow(artistCodeList.includes(value.data[0]?.MANS))
       return;
     }
+    // 
+    setModeFollow(true)
     setInfoArtistId([])
   }
   // 
@@ -32,19 +34,25 @@ export default function Artistpage() {
     const maNS = e.target.getAttribute('data_artist')
     if(!modeFollow)
       {
-        await addFollowArtist(maNS,userCode)
         setModeFollow(true)
-        window.location.reload()
+        await addFollowArtist(maNS,userCode)
+        setParamCurrent('follower'+ userCode+maNS + new Date().toLocaleTimeString())
         return;
       }
-      await removeFollowArtist(maNS,userCode)
       setModeFollow (false)
-      window.location.reload()
+      await removeFollowArtist(maNS,userCode)
+      //
+      if(infoArtists.length ===1)
+        {
+          infoArtists.pop()
+          artistCodeList.pop()
+        }
+      setParamCurrent('un_follower'+ userCode+maNS + new Date().toLocaleTimeString())
   }
   //
   useEffect( ()=>{
     FetchMyArtist()
-  },[paramCurrent])
+  },[artistCodeList])
   return (
        <>
         <Stack className="artist_page mt-5 pt-3">
@@ -131,7 +139,7 @@ export default function Artistpage() {
                 <Col xs={12} className=" mt-3 p-2">
                   {/* Album */}
                   <Row className="album p-2 my-2">
-                    <AlbumComponent code={info?.MANS} TenNS ={info?.TenNS}/>
+                    <AlbumComponent code={info?.MANS} TenNS ={info?.TenNS} parent={infoArtists}/>
                   </Row>
                 </Col>
               </Row>

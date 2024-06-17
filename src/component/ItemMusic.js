@@ -15,17 +15,17 @@ function ItemMusic({idx,info}) {
   //
   // use context
   const string_source = URL_public + info?.filenhac
-  const {setParamCurrent,setFavCodeList,setArtistCodeList,artistCodeList,favCodeList,userCode,setListendList,currentElement,setCurrentElement,audioCurrent} = useContext(AudioCurrentContext);
+  const {setParamCurrent,favList,setArtistCodeList,infoArtists,artistCodeList,favCodeList,userCode,setListendList,currentElement,setCurrentElement,audioCurrent} = useContext(AudioCurrentContext);
   // Navigate
   const navigate = useNavigate();
   const [mode,setMode] = useState(false);
   const [modeFav,setModeFav] = useState(false);
   const [modeFollow,setModeFollow] = useState(false)
   useEffect( ()=>{
-    setMode(audioCurrent.current.src == string_source && currentElement.isPlay)
+    setMode(currentElement.isPlay && currentElement?.filenhac === info?.filenhac )
     setModeFav(favCodeList?.includes(info?.MABH))
     setModeFollow(artistCodeList?.includes(info?.MANS))
-  },[currentElement,favCodeList,artistCodeList])
+  },[currentElement,favCodeList,artistCodeList,favList,infoArtists])
   //
   //Handle Order
   const handleOrderListendList = async () => {
@@ -56,29 +56,41 @@ function ItemMusic({idx,info}) {
         // let arr = [...favCodeList]
         // arr.push(maBH)
         // setFavCodeList([...arr])
-        setParamCurrent('addFav')
+        setParamCurrent('addFav'+maBH + userCode + new Date().toLocaleTimeString())
         return;
       }
       await RemoveFavSong(maBH,userCode)
       setModeFav(false)
-      // let arr = [...favCodeList]
-      // arr = arr.filter((vl)=> vl !== maBH)
-      // setFavCodeList([...arr])
-      setParamCurrent('removeFav')
+      // remove item if the last index
+      if(favList.length ===1)
+          {
+            favList.pop()
+            //console.log("LAST ITEM");
+            favCodeList.pop()
+          }
+      setParamCurrent('removeFav'+maBH + userCode + new Date().toLocaleTimeString())
   }
   //
   const handleClickFollow = async(e)=>{
+    console.log("ĐÃ CLICK FOLLOW");
     const maNS = e.target.getAttribute('data_artist')
     if(!modeFollow)
       {
         await addFollowArtist(maNS,userCode)
         setModeFollow(true)
-        setParamCurrent('addFollow')
+        setParamCurrent('follower'+ userCode+maNS + new Date().toLocaleTimeString())
         return;
       }
       await removeFollowArtist(maNS,userCode)
       setModeFollow (false)
-      setParamCurrent('removeFolow')
+      // remove item if the last index
+      if(infoArtists.length ===1)
+        {
+          infoArtists.pop()
+          //console.log("LAST ITEM");
+          artistCodeList.pop()
+        }
+      setParamCurrent('un_follower'+ userCode+maNS + new Date().toLocaleTimeString())
   }
   //
   const ListenMusic = async (maBH,maND) =>{
