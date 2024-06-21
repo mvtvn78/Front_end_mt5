@@ -23,6 +23,13 @@ export default function SignInComponnet({content,setAlertShow}) {
     setPass(e.target.value)
   }
   const handleForgotButon = (e) =>{
+    if(!email)
+      {
+        content.content = <p>Vui lòng điền đẩy đủ thông tin</p>
+        content.status = "warning"
+        setAlertShow(true)
+        return;
+      }
     axios.post(URL_backend+"/api/v1/forgot",
       {
         email
